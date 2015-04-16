@@ -14,9 +14,8 @@ class JokePack {
 	function __construct(){
 		add_action( 'plugins_loaded', array( $this, 'jokepack_init' ) );
 
-		if ( is_admin() ) {
-			require_once( JOKEPACK_DIR . '/admin/customizer.php' );
-		}
+		require JOKEPACK_DIR . '/admin/customizer.php';
+		
 
 		$base = dirname(__FILE__) .'/includes/';
 		$dir = new DirectoryIterator( $base );
