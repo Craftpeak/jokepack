@@ -8,16 +8,17 @@ define( 'RAINBOWCAT_DIR', JOKEPACK_URL.'/includes/rainbow_cat' );
 class JokePack_RainbowCat{
 
   function __construct(){
-    add_filter( 'wp_footer', array( $this, 'add_audio_html' ), 9999 );
     add_action( 'jokepack_init', array( $this, 'init') );
   }
 
   function init(){
-    add_action( 'wp_enqueue_scripts', array( $this, 'load_rainbow_cat_style' ) );
+    add_filter( 'wp_footer', array( $this, 'add_audio_html' ), 9999 );
+    add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
   }
 
-  function load_rainbow_cat_style() {
+  function enqueue_scripts() {
     wp_enqueue_style( 'rainbow-cat', RAINBOWCAT_DIR.'/rainbow_cat.css');
+    wp_enqueue_script( 'rainbow-cat', RAINBOWCAT_DIR.'/rainbow_cat.js', array('jquery'), '6.6.6', TRUE );
   }
 
   function add_audio_html() {
