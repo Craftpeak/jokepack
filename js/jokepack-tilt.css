@@ -1,18 +1,21 @@
 html {
     -moz-animation-name: rotateBody;
     -moz-animation-iteration-count: 1;
-    -moz-animation-timing-function: ease-in;
-    -moz-animation-duration: 500s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-duration: 8000s;
 
     -webkit-animation-name: rotateBody;
     -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: ease-in;
-    -webkit-animation-duration: 500s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 8000s;
 
     animation-name: rotateBody;
     animation-iteration-count: 1;
-    animation-timing-function: ease-in;
-    animation-duration: 500s;
+    animation-timing-function: linear;
+    animation-duration: 8000s;
+
+    transform-origin: 50% 50%;
+
 }
 
 @-moz-keyframes rotateBody {
