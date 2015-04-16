@@ -7,7 +7,6 @@
  * Adds the individual sections, settings, and controls to the theme customizer
  */
 function jokepack_customizer_settings( $wp_customize ) {
-
 	// register the jokes section
 	$wp_customize->add_section(
 		'select_jokes',
@@ -18,60 +17,28 @@ function jokepack_customizer_settings( $wp_customize ) {
 		)
 	);
 
-	// Tilt
-	$wp_customize->add_setting(
-		'jokepack_tilt',
-		array(
-			'sanitize_callback' => 'jokepack_sanitize_checkbox',
-			'transport'         => 'postMessage',
-		)
-	);
+	$jokes = apply_filters('jokepack_joke', array());
 
-	$wp_customize->add_control(
-		'jokepack_tilt',
-		array(
-			'label'   => __( 'Tilt', 'jokepack' ),
-			'section' => 'select_jokes',
-			'type'    => 'checkbox',
-		)
-	);
+	foreach ($jokes as $slug => $joke ){
 
-	// Cursor Cat
-	$wp_customize->add_setting(
-		'jokepack_cat',
-		array(
-			'sanitize_callback' => 'jokepack_sanitize_checkbox',
-			'transport'         => 'postMessage',
-		)
-	);
+		$wp_customize->add_setting(
+			'jokepack_settings['.$slug.'][enabled]',
+			array(
+				'type' => 'option',
+				'sanitize_callback' => 'jokepack_sanitize_checkbox',
+				'transport'         => 'postMessage',
+			)
+		);
 
-	$wp_customize->add_control(
-		'jokepack_cat',
-		array(
-			'label'   => __( 'Cursor Cat', 'jokepack' ),
-			'section' => 'select_jokes',
-			'type'    => 'checkbox',
-		)
-	);
-
-	// Sing a long
-	$wp_customize->add_setting(
-		'jokepack_sing',
-		array(
-			'sanitize_callback' => 'jokepack_sanitize_checkbox',
-			'transport'         => 'postMessage',
-		)
-	);
-
-	$wp_customize->add_control(
-		'jokepack_sing',
-		array(
-			'label'   => __( 'Sing - a - long', 'jokepack' ),
-			'section' => 'select_jokes',
-			'type'    => 'checkbox',
-		)
-	);
-
+		$wp_customize->add_control(
+			'jokepack_settings['.$slug.'][enabled]',
+			array(
+				'label'   => $joke['title'],
+				'section' => 'select_jokes',
+				'type'    => 'checkbox',
+			)
+		);
+	}
 }
 add_action( 'customize_register', 'jokepack_customizer_settings' );
 

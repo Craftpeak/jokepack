@@ -8,7 +8,19 @@ define( 'RAINBOWCAT_DIR', JOKEPACK_URL.'/includes/rainbow_cat' );
 class JokePack_RainbowCat{
 
   function __construct(){
-    add_action( 'jokepack_init', array( $this, 'init') );
+    // register the joke
+    add_filter( 'jokepack_joke', array( $this, 'make_joke' ) );
+
+    // execute the joe, if it is enabled
+    add_action( 'jokepack_rainbow_cat_init', array( $this, 'init' ) );
+  }
+
+  function make_joke( $jokes ){
+    $jokes['rainbow_cat'] = array(
+        'title' => __('Rainbow Cat'),
+        'description' => '',
+    );
+    return $jokes;
   }
 
   function init(){

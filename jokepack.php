@@ -17,11 +17,24 @@ class JokePack {
 
 		require JOKEPACK_DIR . '/admin/customizer.php';
 
+		// load the jokes
 		$base = dirname(__FILE__) .'/includes/';
 		$dir = new DirectoryIterator( $base );
 		foreach ( $dir as $file ) {
-			if ( !$file->isDot() && !$file->isDir() ) {
+			if ( !$file->isDot() && !$file->isDir() )
+			{
 				include_once $base . $file->getFilename();
+			}
+		}
+	}
+
+	function jokepack_init() {
+		$jokepack_settings = get_option('jokepack_settings', array());
+
+		// initialize jokes that are enabled
+		foreach ($jokepack_settings as $slug => $joke ){
+			if ( $joke['enabled'] ) {
+				do_action( "jokepack_{$slug}_init" );
 			}
 		}
 	}
@@ -63,11 +76,6 @@ J:::::::JJJ:::::::Jo:::::ooooo:::::ok::::::k k:::::ke::::::::e           p:::::p
 		// echo the art
 		echo $art;
 	}
-
-	function jokepack_init() {
-		do_action('jokepack_init');
-	}
-
 }
 
 new JokePack();
