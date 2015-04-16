@@ -8,30 +8,28 @@
  */
 function jokepack_customizer_settings( $wp_customize ) {
 
-
 	/**
-	 * Jokepack Panel Registration
-	 */
+	* Jokepack Panel Registration
+	*/
 	$wp_customize->add_panel( 
 		'jokepack_settings', 
 		array(
-		    'priority'    => 1,
-		    'title'       => __( 'Jokes', 'jokepack' ),
-		    'description' => __( 'Select some weird jokes', 'jokepack' ),
+			'priority'    => 1,
+			'title'       => __( 'Jokes', 'jokepack' ),
+			'description' => __( 'Select some weird jokes', 'jokepack' ),
 		) 
 	);
 
-    $wp_customize->add_section(
-        'select_jokes',
-        array(
-            'title' 	  => __( 'Select Jokes', 'jokepack' ),
-            'description' => __( 'Check a box, and watch ...', 'jokepack' ),
-            'panel' 	  => 'jokepack_settings',
-            'priority'    => 1
-        )
-    );
+	$wp_customize->add_section(
+		'select_jokes',
+		array(
+			'title' 	  => __( 'Select Jokes', 'jokepack' ),
+			'description' => __( 'Check a box, and watch ...', 'jokepack' ),
+			'panel' 	  => 'jokepack_settings',
+			'priority'    => 1
+		)
+	);
 
-	// contact title
 	$wp_customize->add_setting(
 		'jokes',
 		array(
@@ -39,6 +37,7 @@ function jokepack_customizer_settings( $wp_customize ) {
 			'transport' 		=> 'postMessage',
 		)
 	);
+
 	$wp_customize->add_control(
 		'jokes',
 		array(
