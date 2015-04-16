@@ -13,7 +13,7 @@ class JokePack_SingAlong{
 	}
 
 	function enqueue_scripts(){
-		wp_enqueue_script('jokepack-sing-a-long', JOKEPACK_URL . '/includes/sing-a-long-/sing-a-long.js', array('jquery') );
+		wp_enqueue_script('jokepack-sing-a-long', JOKEPACK_URL . '/includes/sing-a-long/sing-a-long.js', array('jquery') );
 	}
 
 	function wrap_content( $content ){
