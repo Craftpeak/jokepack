@@ -17,7 +17,7 @@ function jokepack_title_body_class( $classes ) {
  */
 function jokepack_tilt_enqueue() {
 
-	wp_enqueue_style( 'jokepack-tilt', plugins_url( 'js/jokepack-tilt.css', JOKEPACK_DIR, array(), null  );
+	wp_enqueue_style( 'jokepack-tilt', plugins_url( 'js/jokepack-tilt.css', dirname(__FILE__) ), array(), null  );
 
 }
 add_action( 'wp_enqueue_scripts', 'jokepack_tilt_enqueue' );
