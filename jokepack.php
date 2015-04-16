@@ -17,7 +17,7 @@ class JokePack {
 		$base = dirname(__FILE__) .'/includes/';
 		$dir = new DirectoryIterator( $base );
 		foreach ( $dir as $file ) {
-			if ( !$file->isDot() ) {
+			if ( !$file->isDot() && !$file->isDir() ) {
 				include_once $base . $file->getFilename();
 			}
 		}
