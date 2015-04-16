@@ -1,3 +1,4 @@
-body {
+body,
+a:hover {
   cursor: url('rainbow_cat.png'), default;
 }
