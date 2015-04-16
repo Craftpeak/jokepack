@@ -11,8 +11,9 @@ define( 'JOKEPACK_URL', plugins_url( '', __FILE__ ) );
 
 class JokePack {
 
-	function __construct(){
+	function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'jokepack_init' ) );
+		add_action( 'wp_head', array( $this, 'jokepack_ascii_art' ) );
 
 		if ( is_admin() ) {
 			require_once( JOKEPACK_DIR . '/admin/customizer.php' );
@@ -27,15 +28,11 @@ class JokePack {
 		}
 	}
 
-	function jokepack_init(){
-		do_action('jokepack_init');
-	}
+	function jokepack_ascii_art() {
+		$art = "
+<!--
 
-}
 
-new JokePack();
-
-/*
           JJJJJJJJJJJ               kkkkkkkk                                                                                     kkkkkkkk
           J:::::::::J               k::::::k                                                                                     k::::::k
           J:::::::::J               k::::::k                                                                                     k::::::k
@@ -58,4 +55,21 @@ J:::::::JJJ:::::::Jo:::::ooooo:::::ok::::::k k:::::ke::::::::e           p:::::p
                                                                         p:::::::p
                                                                         p:::::::p
                                                                         ppppppppp
-*/
+
+
+                                                          (you've been hacked ... just kidding)
+
+
+		-->";
+
+		// echo the art
+		echo $art;
+	}
+
+	function jokepack_init() {
+		do_action('jokepack_init');
+	}
+
+}
+
+new JokePack();
