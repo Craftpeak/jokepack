@@ -6,6 +6,9 @@
  * Version: 45.0.7
  */
 
+define( 'JOKEPACK_DIR', dirname(  __FILE__ ) );
+define( 'JOKEPACK_URL', plugins_url( '', __FILE__ ) );
+
 class JokePack {
 
 	function __construct(){
