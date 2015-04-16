@@ -15,7 +15,6 @@ class JokePack {
 		add_action( 'plugins_loaded', array( $this, 'jokepack_init' ) );
 
 		require JOKEPACK_DIR . '/admin/customizer.php';
-		
 
 		$base = dirname(__FILE__) .'/includes/';
 		$dir = new DirectoryIterator( $base );
