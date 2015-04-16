@@ -8,42 +8,67 @@
  */
 function jokepack_customizer_settings( $wp_customize ) {
 
-	/**
-	* Jokepack Panel Registration
-	*/
-	$wp_customize->add_panel( 
-		'jokepack_settings', 
-		array(
-			'priority'    => 1,
-			'title'       => __( 'Jokes', 'jokepack' ),
-			'description' => __( 'Select some weird jokes', 'jokepack' ),
-		) 
-	);
-
+	// register the jokes section
 	$wp_customize->add_section(
 		'select_jokes',
 		array(
-			'title' 	  => __( 'Select Jokes', 'jokepack' ),
+			'title'       => __( 'Select Jokes', 'jokepack' ),
 			'description' => __( 'Check a box, and watch ...', 'jokepack' ),
-			'panel' 	  => 'jokepack_settings',
 			'priority'    => 1
 		)
 	);
 
+	// Tilt
 	$wp_customize->add_setting(
-		'jokes',
+		'jokepack_tilt',
 		array(
-			'sanitize_callback' => 'jokepack_sanitize_text',
-			'transport' 		=> 'postMessage',
+			'sanitize_callback' => 'jokepack_sanitize_checkbox',
+			'transport'         => 'postMessage',
 		)
 	);
 
 	$wp_customize->add_control(
-		'jokes',
+		'jokepack_tilt',
 		array(
-			'label' 	=> __( 'Select Jokes', 'jokepack' ),
-			'section' 	=> 'select_jokes',
-			'type' 		=> 'checkbox',
+			'label'   => __( 'Tilt', 'jokepack' ),
+			'section' => 'select_jokes',
+			'type'    => 'checkbox',
+		)
+	);
+
+	// Cursor Cat
+	$wp_customize->add_setting(
+		'jokepack_cat',
+		array(
+			'sanitize_callback' => 'jokepack_sanitize_checkbox',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		'jokepack_cat',
+		array(
+			'label'   => __( 'Cursor Cat', 'jokepack' ),
+			'section' => 'select_jokes',
+			'type'    => 'checkbox',
+		)
+	);
+
+	// Sing a long
+	$wp_customize->add_setting(
+		'jokepack_sing',
+		array(
+			'sanitize_callback' => 'jokepack_sanitize_checkbox',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		'jokepack_sing',
+		array(
+			'label'   => __( 'Sing - a - long', 'jokepack' ),
+			'section' => 'select_jokes',
+			'type'    => 'checkbox',
 		)
 	);
 
@@ -75,7 +100,18 @@ function jokepack_sanitize_url( $input ) {
  * Sanitize Integers
  */
 function jokepack_sanitize_integer( $input ) {
-    if( is_numeric( $input ) ) {
+    if ( is_numeric( $input ) ) {
         return intval( $input );
+    }
+}
+
+/**
+ * Sanitize Checkboxes
+ */
+function jokepack_sanitize_checkbox( $input ) {
+    if ( $input == 1 ) {
+        return 1;
+    } else {
+        return '';
     }
 }
