@@ -7,6 +7,7 @@
  * Adds the individual sections, settings, and controls to the theme customizer
  */
 function jokepack_customizer_settings( $wp_customize ) {
+	
 	// register the jokes section
 	$wp_customize->add_section(
 		'select_jokes',
@@ -17,14 +18,16 @@ function jokepack_customizer_settings( $wp_customize ) {
 		)
 	);
 
-	$jokes = apply_filters('jokepack_joke', array());
+	// The infamous jokepack filter
+	$jokes = apply_filters( 'jokepack_joke', array() );
 
-	foreach ($jokes as $slug => $joke ){
+	foreach ( $jokes as $slug => $joke ) {
 
+		// add customizer setting
 		$wp_customize->add_setting(
 			'jokepack_settings['.$slug.'][enabled]',
 			array(
-				'type' => 'option',
+				'type'              => 'option',
 				'sanitize_callback' => 'jokepack_sanitize_checkbox',
 				'transport'         => 'postMessage',
 			)
@@ -38,7 +41,9 @@ function jokepack_customizer_settings( $wp_customize ) {
 				'type'    => 'checkbox',
 			)
 		);
-	}
+
+	} // end each joke customizer checkbox
+
 }
 add_action( 'customize_register', 'jokepack_customizer_settings' );
 
