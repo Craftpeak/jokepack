@@ -12,7 +12,6 @@
   function log(logThis) {
     console.log(logThis);
   }
-  log('magnet.js script loaded');
 
   /**
    * Wraps each supplied word in html and returns new words
@@ -33,9 +32,15 @@
     return wrappedWords;
   }
 
-  function attachStuckWordsToMouse() {
+  /**
+   * Set the position of stuckWords to the cursor position
+   */
+  function attachStuckWordsToMouse(offset) {
     $('body').mousemove(function( event ) {
-      $('#stuckWords').offset({left: event.pageX, top: event.pageY});
+      $('#stuckWords').offset({
+        left: event.pageX - offset,
+        top: event.pageY- offset
+      });
     });
   }
 
@@ -44,48 +49,56 @@
         ,words = $magnet.text().split(' ')
         ,wrappedWords = wrapWords(words)
         ,$stuckWords = $('#stuckWords')
+        ,stuckWordsOffset = $stuckWords.width()
         ,counter = 1
         ,rotationClass;
 
+    // Make $stuckWords follow mouse
+    attachStuckWordsToMouse(stuckWordsOffset);
+
     // Replace $magnet html
     $magnet.html(wrappedWords);
-
-    // Make stuckWords follow mouse
-    attachStuckWordsToMouse();
 
     $('body').on('hover', '.magnetized', function(event) {
       $this = $(this);
 
       if (! $this.hasClass('hidden')) {
-        // Add hovered word to stuckWords
-        $stuckWords.append($this[0].outerHTML);
+        // Create new word element and hide it
+        var $addedWord = $(document.createElement('span')).hide();
 
-        // Hide word
-        $this.addClass('hidden');
+        // Append to stuckWords
+        $stuckWords.append($addedWord);
 
         // Set rotation
         if (counter == 1) {
-          rotationClass = '';
+          rotationClass = 'bounce';
         }
         else if (counter == 2) {
-          rotationClass = 'rotate30neg';
+          rotationClass = 'bounce__rotateNeg30';
         }
         else if (counter == 3){
-          rotationClass = 'rotate60';
+          rotationClass = 'bounce__rotate60';
         }
         else if (counter == 4){
-          rotationClass = 'rotate60neg';
+          rotationClass = 'bounce__rotateNeg60';
         }
         else if (counter == 5){
-          rotationClass = 'rotate30';
+          rotationClass = 'bounce__rotate30';
         }
 
-        // Position word
-        $stuckWords.find('#'+ $this[0].id)
-          .addClass(rotationClass)
+        // Add word content, position and style
+        $addedWord
+          .html($this.text())
           .css({
-            left: '-' + $this.width()/2 + 'px'
-          });
+             left: -(($addedWord.width() - stuckWordsOffset) * 0.5)
+            ,top: -(($addedWord.height() - stuckWordsOffset) * 0.5)
+          })
+          .addClass('word ' + rotationClass)
+          .show()
+          .addClass('bounce');
+        
+        // Hide original word
+        $this.addClass('hidden');
 
         // Increment counter
         counter++;
