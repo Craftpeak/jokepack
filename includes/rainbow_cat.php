@@ -11,7 +11,7 @@ class JokePack_RainbowCat{
     // register the joke
     add_filter( 'jokepack_joke', array( $this, 'make_joke' ) );
 
-    // execute the joe, if it is enabled
+    // execute the joke, if it is enabled
     add_action( 'jokepack_rainbow_cat_init', array( $this, 'init' ) );
   }
 

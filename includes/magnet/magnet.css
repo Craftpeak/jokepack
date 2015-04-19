@@ -1,0 +1,53 @@
+#magnet {
+  position: relative;
+  z-index: 2
+}
+
+#stuckWords {
+  position: absolute;
+  width: auto;
+  height: auto;
+  z-index: 1
+}
+
+#stuckWords .magnetized {
+  display: inline-block;
+  background: #fff;
+  position: absolute;
+  border: 1px solid #ccc;
+}
+
+.magnetized {
+}
+
+.magnetized.hidden {
+  opacity: 0;
+}
+
+.rotate30 {
+  -webkit-transform: rotate(30deg);
+     -moz-transform: rotate(30deg);
+      -ms-transform: rotate(30deg);
+          transform: rotate(30deg);
+}
+
+.rotate30neg {
+  -webkit-transform: rotate(-30deg);
+     -moz-transform: rotate(-30deg);
+      -ms-transform: rotate(-30deg);
+          transform: rotate(-30deg);
+}
+
+.rotate60 {
+  -webkit-transform: rotate(60deg);
+     -moz-transform: rotate(60deg);
+      -ms-transform: rotate(60deg);
+          transform: rotate(60deg);
+}
+
+.rotate60neg {
+  -webkit-transform: rotate(-60deg);
+     -moz-transform: rotate(-60deg);
+      -ms-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+}
