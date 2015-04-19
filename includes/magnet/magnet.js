@@ -4,17 +4,6 @@
 
 (function($){
 
-  // TODO //
-  // [done] Get all words
-  // [done] Wrap each word with a span
-  // [done] Add magnetized class and unique id to each word
-  // [done] Track mouse position
-  // Fix position of each word
-  // On word hover
-  // 1. Create duplicate word (added to new array)
-  // 2. Hide old word
-  // 
-
   /**
    * Simple console logging
    * @param  {String} logThis
