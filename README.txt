@@ -13,7 +13,7 @@ Jokepack is a collection of WordPress development examples, expressed through hu
 
 Jokepack is the pentultimate joke plugin!  With our examples and advanced API, your wildest joke-related WordPress plugin dreams will totally come true.
 
-In Jokepack, you learn how to javascript, css, php, try, fail, love, live, mourn, regret, sour, rebuild, nurture, flourish, buy a boat, and retire into the sunset -- all for a fraction of the cost.
+In Jokepack, you learn how to javascript, css, php, try, fail, love, live, mourn, regret, rebuild, struggle, flourish, buy a boat, and retire into the sunset -- all for a fraction of the cost.
 
 == Installation ==
 
@@ -21,7 +21,7 @@ In Jokepack, you learn how to javascript, css, php, try, fail, love, live, mourn
 
 * PHP version 5.3 or greater
 
-= Automatic installation =
+= Installation =
 
 1. Within the WordPress dashboard visit "Plugins" > "Add new" and search for "Jokepack".
 2. Install and activate the plugin.
