@@ -14,6 +14,7 @@ class JokePack_Magnet {
 
   function init() {
     add_filter( 'the_content', array( $this, 'wrap_content' ), 9999 );
+    // add_filter( 'body_class', array( $this, 'magnet_body_class'), 9999 );
     add_action('wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
   }
 
@@ -29,6 +30,11 @@ class JokePack_Magnet {
     wp_enqueue_style( 'jokepack-magnet', MAGNET_DIR.'/magnet.css');
     wp_enqueue_script( 'jokepack-magnet', MAGNET_DIR.'/magnet.js', array('jquery'), '200.0.0', TRUE );
   }
+
+  // function magnet_body_class( $classes ) {
+  //   $classes[] = 'jokepack-magnet';
+  //   return $classes;
+  // }
 
   function wrap_content( $content ) {
     return '<div id="magnet">
